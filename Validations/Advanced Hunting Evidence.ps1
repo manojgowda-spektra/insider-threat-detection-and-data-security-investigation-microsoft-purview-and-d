@@ -1,0 +1,1 @@
+Legacy duplicate validation artifact intentionally reclassified as non-validator cleanup placeholder. The canonical validation set is maintained in Validations/01-task-vm-readiness-and-lab-assets.ps1 through Validations/05-task-graph-export-artifacts-and-alert-content.ps1.

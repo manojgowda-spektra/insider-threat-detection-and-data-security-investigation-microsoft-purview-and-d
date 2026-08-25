@@ -1,0 +1,12 @@
+{
+  "name": "Insider Threat Detection and Data Security Investigation: Microsoft Purview and Defender XDR Integration",
+  "cloud": "azure",
+  "level": "Advanced",
+  "deploymentDurationMinutes": 300,
+  "enableLabValidation": true,
+  "hasInlineQuestions": false,
+  "customPolicy": true,
+  "customRbacRole": true,
+  "cloudScope": null,
+  "policyPack": null
+}

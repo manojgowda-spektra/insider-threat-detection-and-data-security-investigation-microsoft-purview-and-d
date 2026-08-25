@@ -1,0 +1,33 @@
+[
+  {
+    "Name": "Insider Threat Detection and Data Security Investigation: Microsoft Purview and Defender XDR Integration",
+    "Language": "English",
+    "BaseURL": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/",
+    "Files": [
+      {
+        "RawFilePath": "GettingStarted-V2.md",
+        "Order": 1
+      },
+      {
+        "RawFilePath": "Exercise-01.md",
+        "Order": 2
+      },
+      {
+        "RawFilePath": "Exercise-02.md",
+        "Order": 3
+      },
+      {
+        "RawFilePath": "Exercise-03.md",
+        "Order": 4
+      },
+      {
+        "RawFilePath": "Exercise-04.md",
+        "Order": 5
+      },
+      {
+        "RawFilePath": "Exercise-05.md",
+        "Order": 6
+      }
+    ]
+  }
+]
