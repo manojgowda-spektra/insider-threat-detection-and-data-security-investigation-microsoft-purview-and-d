@@ -1,0 +1,21 @@
+{
+  "Name": "insider-threat-investigation-Candidate",
+  "Description": "Custom RBAC role for the Insider Threat Detection and Data Security Investigation: Microsoft Purview and Defender XDR Integration candidate sandbox",
+  "IsCustom": true,
+  "Actions": [
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Network/virtualNetworks/*",
+    "Microsoft.Network/networkSecurityGroups/*",
+    "Microsoft.Network/publicIPAddresses/*",
+    "Microsoft.Network/networkInterfaces/*",
+    "Microsoft.Compute/virtualMachines/*",
+    "Microsoft.Compute/virtualMachines/extensions/*"
+  ],
+  "NotActions": [
+    "Microsoft.Authorization/*/Write",
+    "Microsoft.Authorization/*/Delete"
+  ],
+  "AssignableScopes": [
+    "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-candidate-{DEPLOYMENT_ID}"
+  ]
+}
