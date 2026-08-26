@@ -1,0 +1,95 @@
+{
+  "if": {
+    "anyOf": [
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/virtualMachines"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Compute/virtualMachines/sku.name",
+              "like": "Standard_B*"
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/disks"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Compute/disks/sku.name",
+              "in": [
+                "Standard_LRS",
+                "StandardSSD_LRS",
+                "Premium_LRS"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Storage/storageAccounts/sku.name",
+              "like": "*_LRS"
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "in": [
+              "Microsoft.Compute/virtualMachines",
+              "Microsoft.Compute/disks",
+              "Microsoft.Network/virtualNetworks",
+              "Microsoft.Network/networkSecurityGroups",
+              "Microsoft.Network/networkInterfaces",
+              "Microsoft.Network/publicIPAddresses",
+              "Microsoft.Storage/storageAccounts"
+            ]
+          },
+          {
+            "not": {
+              "field": "location",
+              "in": [
+                "eastus",
+                "eastus2",
+                "centralus",
+                "northcentralus",
+                "southcentralus",
+                "westcentralus",
+                "westus",
+                "westus2",
+                "westus3",
+                "canadacentral",
+                "northeurope",
+                "westeurope",
+                "uksouth",
+                "centralindia",
+                "southeastasia",
+                "eastasia",
+                "australiaeast"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
