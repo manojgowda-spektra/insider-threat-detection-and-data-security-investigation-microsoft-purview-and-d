@@ -31,7 +31,7 @@
     }
   },
   "variables": {
-    "scripturl": "https://experienceazure.blob.core.windows.net/templates/insider-threat-purview-defender/psscript-01.ps1",
+    "scripturl": "https://cosmosonboarding.blob.core.windows.net/insiderthreat/psscript-01.ps1",
     "LabVMName": "[concat('labvm-', parameters('DeploymentID'))]",
     "vnetName": "[concat('vnet-', parameters('DeploymentID'))]",
     "subnetName": "default",
