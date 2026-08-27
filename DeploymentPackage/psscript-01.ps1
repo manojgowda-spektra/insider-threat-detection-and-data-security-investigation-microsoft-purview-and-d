@@ -302,7 +302,7 @@ catch { Write-Warning "EICAR write attempt returned an error. This can occur if 
 
     function New-GraphStarterScript {
         Save-TextFile -Path (Join-Path $labRoot 'get_insider_alerts.py') -Content @'
-"""
+r"""
 Zava Manufacturing - Challenge 5 Microsoft Graph security alert export.
 
 This script is intentionally near-complete so Challenge 5 can focus on reviewing
@@ -367,7 +367,7 @@ def load_config(path: Path = CONFIG_PATH) -> Dict[str, str]:
             "application permission SecurityAlert.Read.All, grant admin consent, create a client secret, "
             "then save tenant_id, client_id, and client_secret in config.json."
         )
-    with path.open("r", encoding="utf-8") as handle:
+    with path.open("r", encoding="utf-8-sig") as handle:
         config = json.load(handle)
     normalized = {
         "tenant_id": config.get("tenant_id") or config.get("tenantId") or config.get("TenantId"),
@@ -510,7 +510,7 @@ def read_text_if_exists(path: Path, max_chars: int = 20000) -> Dict[str, Any]:
     if not path.exists() or not path.is_file():
         return result
     try:
-        text = path.read_text(encoding="utf-8", errors="replace")
+        text = path.read_text(encoding="utf-8-sig", errors="replace")
         result.update({"content": text[:max_chars], "length": len(text), "truncated": len(text) > max_chars})
     except OSError as exc:
         result["error"] = str(exc)
@@ -522,7 +522,7 @@ def load_json_if_exists(path: Path) -> Dict[str, Any]:
     if not path.exists() or not path.is_file():
         return result
     try:
-        result["parsed"] = json.loads(path.read_text(encoding="utf-8"))
+        result["parsed"] = json.loads(path.read_text(encoding="utf-8-sig"))
     except Exception as exc:
         result["error"] = str(exc)
     return result
