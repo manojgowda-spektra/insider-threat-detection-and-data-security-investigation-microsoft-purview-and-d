@@ -144,7 +144,20 @@ ODL ID: $ODLID
         $pythonCommand = Get-PythonCommand
         if (-not $pythonCommand -or -not (Test-Python310OrNewer -PythonCommand $pythonCommand)) { Invoke-ChocoInstall -PackageName 'python' -ExtraArgs '--version=3.12.6'; $pythonCommand = Get-PythonCommand }
         if (-not $pythonCommand) { Write-Log 'Python could not be located after installation attempt.'; return }
-        try { & cmd.exe /c "$pythonCommand -m ensurepip --upgrade" | Write-Host; & cmd.exe /c "$pythonCommand -m pip install --upgrade pip requests msal" | Write-Host } catch { Write-Log "Python package installation failed. $_" }
+        # Call python.exe directly rather than routing through cmd.exe. The stock image installs
+        # to C:\Program Files\Python3xx, and that unquoted path made cmd.exe try to run
+        # "C:\Program". Because a non-zero cmd exit does not throw, the catch never fired and the
+        # failure was silent: requests and msal never installed and Challenge 5 died at import.
+        try {
+            & $pythonCommand -m ensurepip --upgrade 2>&1 | Write-Host
+            & $pythonCommand -m pip install --upgrade pip 2>&1 | Write-Host
+            & $pythonCommand -m pip install requests msal 2>&1 | Write-Host
+            if ($LASTEXITCODE -ne 0) { Write-Log "pip install returned exit code $LASTEXITCODE for requests/msal." }
+            foreach ($module in @('requests','msal')) {
+                & $pythonCommand -c "import $module" 2>$null
+                if ($LASTEXITCODE -ne 0) { Write-Log "Python package '$module' is still not importable after installation." }
+            }
+        } catch { Write-Log "Python package installation failed. $_" }
     }
 
     function Ensure-ProductivityTools {
