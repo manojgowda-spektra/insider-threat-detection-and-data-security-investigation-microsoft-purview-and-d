@@ -80,7 +80,7 @@ In this task, you will download the Windows local-script onboarding package dire
    > [!Tip]
    > If **Endpoints** or **Onboarding** is not visible, do not use a package from another source. Confirm you are signed in as <inject key="AzureAdUserEmail"></inject>, refresh the portal, open another Defender area such as **Incidents** or **Hunting**, and retry the navigation. If the section still does not appear, verify your tenant licensing and security administrator permissions.
 
-5. On the **Onboarding** page, configure the onboarding options. Microsoft Learn's server onboarding guidance lists the Windows Server operating-system option for this deployed Windows Server 2019 VM as **Windows Server 2019, 2022, and 2025**.
+5. On the **Onboarding** page, configure the onboarding options. Microsoft Learn's server onboarding guidance lists the Windows Server operating-system option for this deployed Windows Server VM as **Windows Server 2019, 2022, and 2025**.
 
    - Operating system: **Windows Server 2019, 2022, and 2025**
    - Connectivity type: **Standard** unless your instructor tells you to use streamlined connectivity
