@@ -1,33 +1,33 @@
 [
-  {
-    "Name": "Insider Threat Detection and Data Security Investigation: Microsoft Purview and Defender XDR",
-    "Language": "English",
-    "BaseURL": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/",
-    "Files": [
-      {
-        "RawFilePath": "GettingStarted-V2.md",
-        "Order": 1
-      },
-      {
-        "RawFilePath": "Challenge-01.md",
-        "Order": 2
-      },
-      {
-        "RawFilePath": "Challenge-02.md",
-        "Order": 3
-      },
-      {
-        "RawFilePath": "Challenge-03.md",
-        "Order": 4
-      },
-      {
-        "RawFilePath": "Challenge-04.md",
-        "Order": 5
-      },
-      {
-        "RawFilePath": "Challenge-05.md",
-        "Order": 6
-      }
-    ]
-  }
+    {
+        "Name": "Insider Threat Detection and Data Security Investigation: Microsoft Purview and Defender XDR",
+        "Language": "English",
+        "BaseURL": "https://github.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d",
+        "Files": [
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/refs/heads/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/GettingStarted-V2.md",
+                "Order": 1
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/refs/heads/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/Challenge-01.md",
+                "Order": 2
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/refs/heads/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/Challenge-02.md",
+                "Order": 3
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/refs/heads/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/Challenge-03.md",
+                "Order": 4
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/refs/heads/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/Challenge-04.md",
+                "Order": 5
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/refs/heads/main/LabGuidePackage/Lab%20Guide/Lab%20Guide/Challenge-05.md",
+                "Order": 6
+            }
+        ]
+    }
 ]
