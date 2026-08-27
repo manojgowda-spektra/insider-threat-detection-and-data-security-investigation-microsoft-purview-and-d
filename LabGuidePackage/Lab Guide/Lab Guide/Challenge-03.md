@@ -91,7 +91,7 @@ In this task, you will open Advanced Hunting and create a reusable variable bloc
 
 In this task, you will use broad polling queries to confirm that Defender XDR has ingested recent telemetry from the onboarded lab VM.
 
-1. Before running the polling query, verify in the schema pane that `DeviceFileEvents` and `DeviceEvents` are available. If only one of the two tables is visible, keep `union isfuzzy=true` in the query so the available table can still return results.
+1. Before running the polling query, confirm the device tables actually respond. The schema pane is not proof on its own - it lists the full catalogue, so a table can appear there and still fail to resolve when queried. Run `DeviceFileEvents | count` and `DeviceEvents | count` first. If only one of the two responds, keep `union isfuzzy=true` in the query so the available table can still return results. If neither responds, read the note at the end of this task before continuing.
 
 2. Run the following query after replacing the variable values in the first lines. The query creates safe account fields with `column_ifexists()` so it does not fail when one table lacks `AccountUpn` or another account column.
 
@@ -134,6 +134,17 @@ In this task, you will use broad polling queries to confirm that Defender XDR ha
 
 > [!Tip]
 > Advanced Hunting is designed for proactive investigation across Defender XDR data, but ingestion is not always immediate. Treat an empty result during the first few minutes as a reason to poll and verify prerequisites, not as proof that the activity did not happen.
+
+> [!Important]
+> There are two different failures here, and they mean opposite things.
+>
+> **A query that runs and returns no rows** is the ingestion delay described above. Keep polling.
+>
+> **A query that fails with `Semantic error ... Failed to resolve table or column expression named 'DeviceFileEvents'`** is not your mistake and is not something polling will fix. That error means the Microsoft Defender for Endpoint device tables do not exist in this tenant yet. Microsoft Learn documents that Defender for Endpoint tenant provisioning can take up to 24 hours after the service is first enabled, and the `Device*` tables only appear once it completes.
+>
+> To tell the two apart, run `AlertInfo | count`. If `AlertInfo` resolves and returns a count while `DeviceFileEvents` and `DeviceEvents` fail to resolve, Advanced Hunting itself is working and the device tables are simply not provisioned. The endpoint is not at fault: a correctly onboarded VM reports `OnboardingState = 1` with the Sense service running, and its `Microsoft-Windows-SENSE/Operational` log records a successful machine profile report, while the tenant still returns nothing.
+>
+> If you hit this, record it in `C:\LabFiles\Challenge3-HuntingNotes.txt` and tell your instructor. Tasks 3, 4 and 6 depend on these tables and cannot be completed until provisioning finishes. Task 5 (`EmailEvents`) and the Microsoft Purview work in Challenge 4 are unaffected.
 
 ## Task 3: Hunt design file activity in `DeviceFileEvents`
 
