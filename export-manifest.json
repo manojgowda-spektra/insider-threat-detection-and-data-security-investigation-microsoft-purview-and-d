@@ -14,7 +14,7 @@
       "enabled": true
     },
     "rbac": {
-      "enabled": true
+      "enabled": false
     },
     "policy": {
       "enabled": true
@@ -90,11 +90,6 @@
     {
       "path": "permissions/CustomARMPolicy/azure-policy.json",
       "kind": "policy_json",
-      "lintStatus": "passed"
-    },
-    {
-      "path": "permissions/CustomRBAC/custom-rbac-role.json",
-      "kind": "rbac_json",
       "lintStatus": "passed"
     },
     {

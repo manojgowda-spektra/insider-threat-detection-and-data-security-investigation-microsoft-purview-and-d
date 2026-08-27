@@ -25,7 +25,7 @@ Pre-configured inline validations enabled
 
 Lab Guide Preview
 Preview link for the lab guide documentation:
-[\[CloudLabs LabGuide Preview\]](https://experience.cloudlabs.ai/#labguidepreview/<GUID>/1)
+CloudLabs generates this link once the template exists; it takes the form `https://experience.cloudlabs.ai/#labguidepreview/<lab-guide-id>/1`, where the id is copied from the Admin Center preview URL. The guide source itself is at `https://raw.githubusercontent.com/manojgowda-spektra/insider-threat-detection-and-data-security-investigation-microsoft-purview-and-d/main/LabGuidePackage/Lab%20Guide/masterdoc.json`.
 
 Lab Environment Setup & Deployment
 Lab provisioning and setup include one or more of the following components:

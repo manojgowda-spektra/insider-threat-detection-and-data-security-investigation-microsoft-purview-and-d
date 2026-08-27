@@ -8,7 +8,7 @@ Use the five canonical validators below. Microsoft Purview portal-only configura
 |---|---|---|---|
 | 1 | `Validations/01-task-vm-readiness-and-lab-assets.ps1` | VM, Custom Script Extension, local assets, Python, and packages | Audit readiness, Purview role-group membership, HR connector, and Insider Risk policy |
 | 2 | `Validations/02-task-defender-onboarding-telemetry-alert-and-alert-sharing.ps1` | Recent MDE device telemetry and lab-linked EICAR/test-file alert evidence | Purview-to-Defender XDR alert-sharing setting |
-| 3 | `Validations/03-task-advanced-hunting-evidence.ps1` | Inspection of `C:\LabFiles\Challenge3-HuntingNotes.txt` | Query quality and portal telemetry review |
+| 3 | `Validations/03-task-advanced-hunting-evidence.ps1` | Runs the `DeviceFileEvents` and `AlertInfo`/`AlertEvidence` hunting queries against the tenant over a 12-hour window using the validation identity, and requires at least one row from each, plus a present, non-empty `C:\LabFiles\Challenge3-HuntingNotes.txt` (50 characters or more) because Challenge 5 reads it | Note wording, query quality, and analytical narrative |
 | 4 | `Validations/04-task-dsi-exported-evidence.ps1` | Real, non-empty, parseable DSI or eDiscovery export evidence under `C:\LabFiles\DSIExports\` | Case workflow, DSI availability, authorization, and cost decisions |
 | 5 | `Validations/05-task-graph-export-artifacts-and-alert-content.ps1` | App-only Graph access and recent lab-linked MDE alert content in both outputs | Credential, app, DSI, and eDiscovery cleanup after validation |
 
@@ -160,7 +160,7 @@ Get-ChildItem C:\ExfilStaging,D:\ExfilStaging -ErrorAction SilentlyContinue
 
 The learner runs bounded Advanced Hunting queries against available tables, including `DeviceFileEvents`, `DeviceEvents`, `EmailEvents`, `EmailAttachmentInfo`, `AlertInfo`, and `AlertEvidence`. Queries use the exact VM, risky UPN, staged filenames, and lab time window.
 
-`C:\LabFiles\Challenge3-HuntingNotes.txt` records concrete endpoint, alert, email, and file findings plus honest telemetry gaps. Challenge 3 includes `<validation step="03-task-advanced-hunting-evidence"/>`, which validates this artifact.
+`C:\LabFiles\Challenge3-HuntingNotes.txt` records concrete endpoint, alert, email, and file findings plus honest telemetry gaps. Challenge 3 includes `<validation step="03-task-advanced-hunting-evidence"/>`. That step runs the hunting queries itself against the tenant and requires real rows back, so pasting the guide’s own example text does not pass. The notes file must exist and hold at least 50 characters because Challenge 5 reads it, but its wording is not graded.
 
 ### Reference queries
 
@@ -453,7 +453,7 @@ When authorized:
 
 ```powershell
 Connect-MgGraph -Scopes 'Application.ReadWrite.All'
-$apps = Get-MgApplication -Filter "displayName eq 'Zava Graph Alert Export'" -All
+$apps = Get-MgApplication -Filter "startsWith(displayName,'Zava Graph Alert Export')" -All
 foreach ($app in $apps) {
   Get-MgServicePrincipal -Filter "appId eq '$($app.AppId)'" -All |
     ForEach-Object { Remove-MgServicePrincipal -ServicePrincipalId $_.Id }
@@ -479,15 +479,15 @@ Directory changes and consent can take time to propagate. Deleted applications o
 ## Microsoft Learn references
 
 - [Audit solutions in Microsoft Purview](https://learn.microsoft.com/purview/audit-solutions-overview)
-- [Insider Risk Management role groups](https://learn.microsoft.com/purview/insider-risk-management-role-groups)
+- [Insider Risk Management role groups](https://learn.microsoft.com/purview/insider-risk-management-permissions)
 - [Insider Risk Management policies](https://learn.microsoft.com/purview/insider-risk-management-policies)
 - [Import HR data](https://learn.microsoft.com/purview/import-hr-data)
 - [Onboard Windows servers to Microsoft Defender for Endpoint](https://learn.microsoft.com/defender-endpoint/onboard-windows-server)
 - [Advanced hunting overview](https://learn.microsoft.com/defender-xdr/advanced-hunting-overview)
-- [Data Security Investigations overview](https://learn.microsoft.com/purview/data-security-investigations-overview)
-- [Data Security Investigations licensing and billing](https://learn.microsoft.com/purview/data-security-investigations-licensing)
-- [Search for content in eDiscovery](https://learn.microsoft.com/purview/edisc-search-for-content)
-- [Export search results in eDiscovery](https://learn.microsoft.com/purview/edisc-export-search-results)
+- [Data Security Investigations overview](https://learn.microsoft.com/purview/data-security-investigations)
+- [Data Security Investigations billing](https://learn.microsoft.com/purview/data-security-investigations-billing)
+- [Search for content in eDiscovery](https://learn.microsoft.com/purview/ediscovery-search-for-content)
+- [Export search results in eDiscovery](https://learn.microsoft.com/purview/ediscovery-export-search-results)
 - [Microsoft Graph security alert resource](https://learn.microsoft.com/graph/api/resources/security-alert)
 - [List security alerts v2](https://learn.microsoft.com/graph/api/security-list-alerts_v2)
 - [OAuth 2.0 client credentials flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-client-creds-grant-flow)
