@@ -39,6 +39,9 @@ Challenge 4 is successful only when `C:\LabFiles\DSIExports` contains evidence e
 
 ## Task 1: Sign in and confirm the investigation context and DSI availability
 
+> [!Note]
+> The first time you open the Microsoft Purview portal in a new tenant, a **Welcome to the new Microsoft Purview portal!** panel appears over the page. It is modal and will swallow your clicks until you dismiss it with **Get started**.
+
 In this task, you will sign in to Microsoft Purview, identify the account and artifacts that define the investigation, and decide whether to use Data Security Investigations or the low-export eDiscovery fallback.
 
 1. In the lab VM, open Microsoft Edge.
@@ -123,26 +126,27 @@ In this task, you will create a new Microsoft Purview Data Security Investigatio
 
 In this task, you will scope the investigation to the lab admin account so searches focus on the suspected departing engineer.
 
-1. In **Insider Threat Case - Design Engineer**, locate the area for **Data sources**, **Manage data sources**, **Custodians**, or **Sources**.
+> [!Note]
+> The eDiscovery experience has no case-level **Custodians** or **Data sources** area. Scope is set inside each search, so you create the search first and then add the risky user to it. If your tenant still shows a case-level custodian page, use that instead and skip to step 6.
 
-2. Select **Add data sources** or **Add custodian**.
+1. In **Insider Threat Case - Design Engineer**, select **Searches**.
 
-3. Search for the risky user UPN: <inject key="AzureAdUserEmail"></inject>.
+2. Select **Create a search**.
 
-4. Select the user account.
+3. Enter a name such as `Zava design file evidence` and a description that identifies the departing engineer, then select **Create**. The creation panel asks only for a name and a description - sources and conditions are added afterwards, inside the search.
 
-5. Confirm that the user's available sources are included. Depending on tenant data and licensing, this may include:
+4. Open the search you just created.
+
+5. Select **Add sources**.
+
+6. Search for the risky user UPN: <inject key="AzureAdUserEmail"></inject>, select the account, and save. Depending on tenant data and licensing the available sources may include:
 
    - Exchange Online mailbox
    - OneDrive account
    - Teams chat data stored for the user
    - SharePoint locations associated with files the user uploaded or shared
 
-6. Select **Save**.
-
-7. If the portal offers an organization-wide source such as **All people and groups**, do not use it as the only scope for this challenge. Keep the risky user selected so your result set remains defensible and tied to the suspected custodian.
-
-8. If you are using the eDiscovery fallback, add the same user as the case data source or custodian and include the mailbox and site locations available for that user.
+7. Do not use **Add tenant-wide sources** as your only scope. Keep the risky user selected so the result set stays defensible and tied to the suspected custodian.
 
 9. Checkpoint: before continuing, verify that the case or search scope visibly includes <inject key="AzureAdUserEmail"></inject> and that your notes identify whether you are using **Data Security Investigations** or the **eDiscovery fallback**.
 
