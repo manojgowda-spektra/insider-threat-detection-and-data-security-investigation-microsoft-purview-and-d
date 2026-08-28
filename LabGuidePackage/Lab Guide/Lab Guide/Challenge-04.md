@@ -40,7 +40,7 @@ Challenge 4 is successful only when `C:\LabFiles\DSIExports` contains evidence e
 ## Task 1: Sign in and confirm the investigation context and DSI availability
 
 > [!Note]
-> The first time you open the Microsoft Purview portal in a new tenant, a **Welcome to the new Microsoft Purview portal!** panel appears over the page. It is modal and will swallow your clicks until you dismiss it with **Get started**.
+> In a new tenant the Microsoft Purview portal shows a **Welcome to the new Microsoft Purview portal!** dialog over the page, and it can reappear later in the session. Close it with the **X** in its top-right corner. Selecting **Get started** does not dismiss it, so if your clicks stop registering, check whether this dialog has come back.
 
 In this task, you will sign in to Microsoft Purview, identify the account and artifacts that define the investigation, and decide whether to use Data Security Investigations or the low-export eDiscovery fallback.
 
