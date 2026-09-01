@@ -14,6 +14,11 @@ Deliverables Included in the Package
 • Lab Guide
 • Master Document
 • Inline Validations
+• Solution Guide (solution-guide/solution.md)
+• Specification (Spec.md)
+• ARM template, parameters and Custom Script Extension bootstrap (DeploymentPackage/)
+• Azure custom RBAC role (permissions/CustomRBAC/custom-rbac-role.json)
+• Custom ARM policy (permissions/CustomARMPolicy/azure-policy.json)
 
 Inline Validations
 Pre-configured inline validations enabled
